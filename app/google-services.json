@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "726569382036",
+    "firebase_url": "https://frizty-ef1ae.firebaseio.com",
+    "project_id": "frizty-ef1ae",
+    "storage_bucket": "frizty-ef1ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726569382036:android:0aed98428b84c108d54481",
+        "android_client_info": {
+          "package_name": "com.example.frizty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726569382036-j87pti4pk9q5vel2pkmju4ldl2v69ul8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.frizty",
+            "certificate_hash": "53c833e32f666e764b0ccdead1c3dbf4fb5a61a0"
+          }
+        },
+        {
+          "client_id": "726569382036-9jkgvf6i6dnkb9ugfocvqf4dtmcium6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG-zbcTyJPpb--AByEHUkvo2dBJitjzYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726569382036-9jkgvf6i6dnkb9ugfocvqf4dtmcium6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
