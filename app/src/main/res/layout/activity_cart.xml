@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailsActivity">
+    tools:context=".CartActivity">
 
     <ImageView
         android:id="@+id/productImageDetails"
@@ -41,7 +41,7 @@
         android:id="@+id/productPriceDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Product Decription"
+        android:text="Product Price"
         android:layout_below="@+id/productDescriptionDetails"
         android:textStyle="bold"
         android:textSize="16sp"

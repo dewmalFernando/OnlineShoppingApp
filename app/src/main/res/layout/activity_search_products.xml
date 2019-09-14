@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchProductsActivity"
+    android:layout_centerHorizontal="true">
+
+    <RelativeLayout
+        android:id="@+id/r5"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true">
+
+        <EditText
+            android:id="@+id/searchProductText"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:width="20dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:hint="Product Name"
+            android:background="@android:color/white"
+            android:layout_marginStart="5dp"
+            android:layout_centerVertical="true"
+            android:padding="9dp"
+            android:textColorHint="@color/colorPrimaryDark"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="9dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_toRightOf="@+id/searchProductText"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchList"
+        android:layout_below="@+id/r5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.frizty;
+package com.example.frizty.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.frizty.R;
 
 public class AdminCatagoryActivity extends AppCompatActivity {
 

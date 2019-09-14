@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewCartActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeRayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Total Price = "
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/messageOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        android:layout_centerVertical="true"
+        android:textSize="20dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="gone"
+        android:text="Congratulations, your final order placed successfully. It will be verified soon" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartList"
+        android:layout_below="@+id/relativeRayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/orderNextButton">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/orderNextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:text="Next"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        />
+</RelativeLayout>

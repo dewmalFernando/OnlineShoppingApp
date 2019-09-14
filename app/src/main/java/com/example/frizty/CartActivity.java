@@ -77,6 +77,7 @@ public class CartActivity extends AppCompatActivity {
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
         final HashMap<String, Object> cartMap = new HashMap<>();
+
         cartMap.put("pid", productId);
         cartMap.put("pname", productName.getText().toString());
         cartMap.put("price", producrPrice.getText().toString());
@@ -116,14 +117,19 @@ public class CartActivity extends AppCompatActivity {
         productRef.child("productId").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    Products products = dataSnapshot.getValue(Products.class);
-                    productName.setText(products.getProductName());
-                    productName.setText(products.getPrice());
-                    productName.setText(products.getDescription());
-                    Picasso.get().load(products.getImage()).into(productImage);
+                try{
+                    if(dataSnapshot.exists()){
+                        Products products = dataSnapshot.getValue(Products.class);
+                        productName.setText(products.getProductName());
+                        producrPrice.setText(products.getPrice());
+                        productDescription.setText(products.getDescription());
+                        Picasso.get().load(products.getImage()).into(productImage);
 
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
                 }
+
             }
 
             @Override

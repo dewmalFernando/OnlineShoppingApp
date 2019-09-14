@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/welcome">
+    tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/applogo"/>
+    <!--<ImageView-->
+        <!--android:id="@+id/app_logo"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="60dp"-->
+        <!--android:src="@drawable/applogo"/>-->
 
     <TextView
         android:id="@+id/app_slogan"

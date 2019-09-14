@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.frizty.Admin.AdminCatagoryActivity;
 import com.example.frizty.Model.Users;
 import com.example.frizty.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
@@ -24,17 +25,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import io.paperdb.Paper;
 
-import static android.text.TextUtils.isEmpty;
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inputUserName, inputPassword;
     private ProgressDialog loadingBar;
     private Button loginBtn;
-    private TextView adminLink, notAdminLink;
+    private TextView adminLink, notAdminLink, forgetPasswordLink;
     private CheckBox checkBoxRememberMe;
 
     private String parentDBName = "Users";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +43,14 @@ public class LoginActivity extends AppCompatActivity {
 
         loginBtn = (Button)findViewById(R.id.main_login_btn);
         inputUserName = (EditText)findViewById(R.id.userName);
-        inputPassword = (EditText)findViewById(R.id.password);
+        inputPassword = (EditText)findViewById(R.id.login_password);
         loadingBar = new ProgressDialog(this);
         checkBoxRememberMe = (CheckBox)findViewById(R.id.rememberMeCheckbox);
         adminLink = (TextView)findViewById(R.id.adminPanelLink);
         notAdminLink = (TextView)findViewById(R.id.notAdminPanelLink);
+        forgetPasswordLink = (TextView)findViewById(R.id.forgetPasswordLink);
         Paper.init(this);
+
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginBtn.setText("Login Admin");
                 adminLink.setVisibility(View.INVISIBLE);
                 notAdminLink.setVisibility(View.VISIBLE);
-                parentDBName = "Admins";
+                parentDBName = "Admin";
             }
         });
 
@@ -82,14 +84,22 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void loginUser(){
-//        String username = inputUserName.getText().toString();
-//        String password = inputPassword.getText().toString();
 
-        String username = "dewmalfernando";
-        String password = "abv";
+        final DatabaseReference databaseReference;
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        String username = inputUserName.getText().toString();
+        String password = inputPassword.getText().toString();
+
+//
+//    String username = "dewmalfernando";
+//        String password = "abv";
+
+//        String username = "admin";
+//        String password = "admin";
 
         if(TextUtils.isEmpty(username)){
-            Toast.makeText(this, "Please write your email", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please write your user name", Toast.LENGTH_LONG).show();
         }else if(TextUtils.isEmpty(password)){
             Toast.makeText(this, "Please write your password", Toast.LENGTH_LONG).show();
         }else{
@@ -104,15 +114,14 @@ public class LoginActivity extends AppCompatActivity {
 
     private void AllowAccessToAccount(final String username, final String password) {
 
+        final DatabaseReference databaseReference;
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         if(checkBoxRememberMe.isChecked()){
             Paper.book().write(Prevalent.username, username);
             Paper.book().write(Prevalent.password, password);
         }
-         DatabaseReference databaseReference;
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference();
 
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -122,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                     Users userData = dataSnapshot.child(parentDBName).child(username).getValue(Users.class);
                     if(userData.getUsername().equals(username)){
                         if(userData.getPassword().equals(password)){
-                            if(parentDBName.equals("Admins")){
+                            if(parentDBName.equals("Admin")){
                                 Toast.makeText(LoginActivity.this, "Welcome admin your are Logged in successfully", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
@@ -130,7 +139,6 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }else if(parentDBName.equals("Users")){
                                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-
                                 loadingBar.dismiss();
 
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -156,6 +164,8 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
         // Read from the database

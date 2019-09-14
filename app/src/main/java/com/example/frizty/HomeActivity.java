@@ -67,8 +67,8 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(HomeActivity.this, ViewCartActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -104,10 +104,10 @@ public class HomeActivity extends AppCompatActivity
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull final Products model) {
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
                 holder.txtProductName.setText(model.getProductName());
                 holder.textProductDescription.setText(model.getDescription());
-                holder.textProductPrice.setText("Price = " + model.getPrice() + "Rs.");
+                holder.textProductPrice.setText("Price = "+ "Rs." + model.getPrice() );
                 Picasso.get().load(model.getImage()).into(holder.imageView);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -173,9 +173,11 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_cart) {
-            // Handle the camera action
-        } else if (id == R.id.nav_orders) {
-
+            Intent intent = new Intent(HomeActivity.this, ViewCartActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_search) {
+            Intent intent = new Intent(HomeActivity.this, SearchProductsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_catagory) {
 
         } else if (id == R.id.nav_settings) {
