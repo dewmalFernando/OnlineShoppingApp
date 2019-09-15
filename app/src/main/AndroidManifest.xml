@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestPasswordActivity"></activity>
+        <activity android:name=".AdminNewOrderActivity"></activity>
+        <activity android:name=".RestPasswordActivity" />
         <activity android:name=".SearchProductsActivity" />
         <activity android:name=".PaymentDetails" />
         <activity android:name=".ComfirmFinalOrderActivity" />
