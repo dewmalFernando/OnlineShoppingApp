@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.frizty.Admin.AdminCatagoryActivity;
 import com.example.frizty.Model.Users;
 import com.example.frizty.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
@@ -91,12 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         String username = inputUserName.getText().toString();
         String password = inputPassword.getText().toString();
 
-//
-//    String username = "dewmalfernando";
-//        String password = "abv";
 
-//        String username = "admin";
-//        String password = "admin";
 
         if(TextUtils.isEmpty(username)){
             Toast.makeText(this, "Please write your user name", Toast.LENGTH_LONG).show();
@@ -135,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Welcome admin your are Logged in successfully", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(LoginActivity.this, AdminCatagoryActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
                                 startActivity(intent);
                             }else if(parentDBName.equals("Users")){
                                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();

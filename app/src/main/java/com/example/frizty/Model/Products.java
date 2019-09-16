@@ -2,18 +2,18 @@ package com.example.frizty.Model;
 
 public class Products {
 
-    private String productName, description, price, image, catagoty, pid, time, date;
+    private String productName, description, price, image, category, pid, time, date;
 
     public Products(){
 
     }
 
-    public Products(String productName, String description, String price, String image, String catagoty, String pid, String time, String date) {
+    public Products(String productName, String description, String price, String image, String category, String pid, String time, String date) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.image = image;
-        this.catagoty = catagoty;
+        this.category = category;
         this.pid = pid;
         this.time = time;
         this.date = date;
@@ -51,12 +51,12 @@ public class Products {
         this.image = image;
     }
 
-    public String getCatagoty() {
-        return catagoty;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCatagoty(String catagoty) {
-        this.catagoty = catagoty;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getPid() {

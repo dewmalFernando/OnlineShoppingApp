@@ -1,8 +1,4 @@
-package com.example.frizty.Admin;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.frizty;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,8 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-//import com.google.android.gms.auth.api.signin.internal.Storage;
-import com.example.frizty.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,7 +33,7 @@ import java.util.HashMap;
 public class AdminAddNewProductActivity extends AppCompatActivity {
 
     private Button addNewProductBtn;
-    private String catagoryName, description, price, productName, saveCurrentDate, saveCurrentTime;
+    private String categoryName, description, price, productName, saveCurrentDate, saveCurrentTime;
     private ImageView inputProductImage;
     private EditText inputProductName, inputProductDescription, inputProductPrice;
     private static final int galleryPick = 1;
@@ -50,8 +48,15 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_new_product);
 
-        catagoryName = getIntent().getExtras().get("catagory").toString();
+
+        categoryName = getIntent().getExtras().get("catagory").toString();
         productImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
+//            try{
+//
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+
         productReference = FirebaseDatabase.getInstance().getReference().child("Products");
 
         addNewProductBtn = (Button)findViewById(R.id.addProductBtn);
@@ -60,6 +65,8 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         inputProductDescription = (EditText)findViewById(R.id.productDescription);
         inputProductPrice = (EditText)findViewById(R.id.productPrice);
         loadingBar = new ProgressDialog(this);
+
+
 
         inputProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,12 +82,11 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(this, catagoryName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, categoryName, Toast.LENGTH_SHORT).show();
     }
 
 
     private void openGallery() {
-
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
@@ -118,9 +124,10 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
     private void storeProductInformation() {
 
+
         loadingBar.setTitle("Add new product");
         loadingBar.setMessage("Please wait, while we are adding the new product");
-        loadingBar.setCanceledOnTouchOutside(false);
+        loadingBar.setCanceledOnTouchOutside(true);
         loadingBar.show();
 
         Calendar calendar = Calendar.getInstance();
@@ -133,9 +140,11 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
         productRandomKey = saveCurrentDate + saveCurrentTime;
 
-        final StorageReference filePath = productImagesRef.child(imageUri.getLastPathSegment() + productRandomKey + ".jpg");
 
-        final UploadTask uploadTask = filePath.putFile(imageUri);
+            final StorageReference filePath = productImagesRef.child(imageUri.getLastPathSegment() + productRandomKey + ".jpg");
+
+            final UploadTask uploadTask = filePath.putFile(imageUri);
+
 
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
@@ -184,7 +193,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         productMap.put("time", saveCurrentTime);
         productMap.put("description", description);
         productMap.put("image", downloadImageUrl);
-        productMap.put("catagory", catagoryName);
+        productMap.put("catagory", categoryName);
         productMap.put("price", price);
         productMap.put("productName", productName);
 
@@ -194,7 +203,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
 
-                            Intent intent = new Intent(AdminAddNewProductActivity.this, AdminCatagoryActivity.class);
+                            Intent intent = new Intent(AdminAddNewProductActivity.this, AdminCategoryActivity.class);
                             startActivity(intent);
 
                             loadingBar.dismiss();

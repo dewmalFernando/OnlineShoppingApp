@@ -1,8 +1,5 @@
 package com.example.frizty;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.frizty.Model.Users;
 import com.example.frizty.Prevalent.Prevalent;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         joinNowBtn = (Button) findViewById(R.id.main_join_btn);
         loginBtn = (Button) findViewById(R.id.main_login_btn);
         loadingBar = new ProgressDialog(this);
+        Paper.init(this);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,20 +52,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        String username = Paper.book().read(Prevalent.username);
-//        String password = Paper.book().read(Prevalent.password);
-//
-//
-//        if (username != "" && password != "") {
-//            if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-//                allowAccess(username, password);
-//
-//                loadingBar.setTitle("Already Logged in");
-//                loadingBar.setMessage("Please wait, while we are checking the credentials");
-//                loadingBar.setCanceledOnTouchOutside(false);
-//                loadingBar.show();
-//            }
-//        }
+        String username = Paper.book().read(Prevalent.username);
+        String password = Paper.book().read(Prevalent.password);
+
+        //Paper.init();
+
+
+        if (username != "" && password != "") {
+            if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+                allowAccess(username, password);
+
+                loadingBar.setTitle("Already Logged in");
+                loadingBar.setMessage("Please wait, while we are checking the credentials");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+            }
+        }
     }
 
 

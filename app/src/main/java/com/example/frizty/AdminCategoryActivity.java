@@ -1,6 +1,4 @@
-package com.example.frizty.Admin;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.frizty;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.frizty.AdminNewOrderActivity;
-import com.example.frizty.HomeActivity;
-import com.example.frizty.R;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class AdminCatagoryActivity extends AppCompatActivity {
+public class AdminCategoryActivity extends AppCompatActivity {
 
     private ImageView maleDress, femaleDress;
     private Button adminLogoutButton, chechkOredersButton;
@@ -23,8 +19,8 @@ public class AdminCatagoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_catagory);
 
 
-        maleDress = (ImageView)findViewById(R.id.maleDress);;
-        femaleDress = (ImageView)findViewById(R.id.femaleDress);;
+        maleDress = (ImageView)findViewById(R.id.maleDress);
+        femaleDress = (ImageView)findViewById(R.id.femaleDress);
 
         adminLogoutButton = (Button)findViewById(R.id.adminLogOutButton);
         chechkOredersButton = (Button)findViewById(R.id.checkOrdersButton);
@@ -34,7 +30,7 @@ public class AdminCatagoryActivity extends AppCompatActivity {
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminCatagoryActivity.this, HomeActivity.class);
+                Intent intent = new Intent(AdminCategoryActivity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
@@ -44,8 +40,8 @@ public class AdminCatagoryActivity extends AppCompatActivity {
 
         chechkOredersButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminCatagoryActivity.this, AdminNewOrderActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminNewOrderActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,7 +49,7 @@ public class AdminCatagoryActivity extends AppCompatActivity {
         maleDress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminCatagoryActivity.this, AdminAddNewProductActivity.class);
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
                 intent.putExtra("catagory", "Male Dress");
                 startActivity(intent);
             }
@@ -62,7 +58,7 @@ public class AdminCatagoryActivity extends AppCompatActivity {
         femaleDress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminCatagoryActivity.this, AdminAddNewProductActivity.class);
+                Intent intent = new Intent(AdminCategoryActivity.this, AdminAddNewProductActivity.class);
                 intent.putExtra("catagory", "Female Dress");
                 startActivity(intent);
             }
