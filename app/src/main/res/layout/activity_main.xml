@@ -18,11 +18,13 @@
         android:id="@+id/app_slogan"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"
-        android:layout_marginEnd="88dp"
-        android:text="FIND, DISCOVER and BUY"
+        android:text="FIND, DISCOVER
+                          and
+                          BUY"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
@@ -58,6 +60,6 @@
         android:padding="20dp"
         android:textSize="18sp"
         android:text="Join now"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/background_dark"/>
 
 </RelativeLayout>

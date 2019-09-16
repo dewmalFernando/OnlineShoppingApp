@@ -5,6 +5,8 @@
     <!--<color name="colorAccent">#EF4081</color>-->
 
     <color name="colorPrimary">#333333</color>
-    <color name="colorPrimaryDark">#333333</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D4AF37</color>
+    <color name="colorButtons">#D4AF37</color>
+    <color name="colorLogoutButtons">#800000</color>
 </resources>
