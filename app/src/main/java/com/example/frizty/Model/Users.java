@@ -2,18 +2,19 @@ package com.example.frizty.Model;
 
 public class Users {
 
-    private String firstname, lastname, phone, email, password, username;
+    private String firstname, lastname, phone, email, password, username, image;
 
     public Users() {
     }
 
-    public Users(String firstname, String lastname, String phone, String email, String password, String username) {
+    public Users(String firstname, String lastname, String phone, String email, String password, String username, String image) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
         this.email = email;
         this.password = password;
         this.username = username;
+        this.image = image;
     }
 
     public String getFirstname() {
@@ -62,5 +63,13 @@ public class Users {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

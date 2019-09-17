@@ -2,43 +2,34 @@ package com.example.frizty;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frizty.Model.Products;
 import com.example.frizty.Prevalent.Prevalent;
-import com.example.frizty.R;
 import com.example.frizty.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.LayoutInflater;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.Menu;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity
@@ -84,9 +75,11 @@ public class HomeActivity extends AppCompatActivity
 
         View headerView =  navigationView.getHeaderView(0);
         TextView userNameTextView = headerView.findViewById(R.id.userProfileName);
-        ImageView profileImageView = headerView.findViewById(R.id.userProfileImage);
+        //ImageView profileImageView = headerView.findViewById(R.id.userProfileImage);
+        CircleImageView profileImageView = headerView.findViewById(R.id.userProfileImage);
 
-        userNameTextView.setText(Prevalent.currentOnlineUser.getUsername());
+        userNameTextView.setText(Prevalent.currentOnlineUser.getFirstname() + Prevalent.currentOnlineUser.getLastname());
+        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
         recyclerView = findViewById(R.id.recycleMenu);
         recyclerView.setHasFixedSize(true);
@@ -181,7 +174,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_catagory) {
 
         } else if (id == R.id.nav_settings) {
-
+            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
             Paper.book().destroy();
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);

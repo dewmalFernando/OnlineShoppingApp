@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarSettingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/closeSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Close"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:id="@+id/updateAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Update"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/settingProfileImage"
+        android:src="@drawable/profile"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_below="@+id/appbarSettingLayout"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/profileImageChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Change Profile"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="25dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/settingProfileImage"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/settingUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Change User Name"
+        android:inputType="text"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/profileImageChange"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/settingPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:inputType="textPassword"
+        android:hint="Change Password"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/settingUserName"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/settingFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:inputType="text"
+        android:hint="Change First Name"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/settingPassword"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/settingLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:inputType="text"
+        android:hint="Change Last Name"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/settingFirstName"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/settingPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:inputType="phone"
+        android:hint="Change Phone Number"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/settingLastName"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/settingEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:inputType="textEmailAddress"
+        android:hint="Change Email"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/settingPhone"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
