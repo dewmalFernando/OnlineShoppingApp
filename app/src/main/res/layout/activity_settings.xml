@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="Change Profile"
+        android:text="Change Profile Picture"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="25dp"
         android:textColor="@android:color/black"
@@ -72,19 +72,19 @@
         android:layout_below="@+id/settingProfileImage"
         android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:id="@+id/settingUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:hint="Change User Name"
-        android:inputType="text"
-        android:layout_marginTop="5dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_marginRight="10dp"
-        android:layout_below="@+id/profileImageChange"
-        android:layout_centerHorizontal="true"/>
+<!--    <EditText-->
+<!--        android:id="@+id/settingUserName"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="16sp"-->
+<!--        android:hint="Change User Name"-->
+<!--        android:inputType="text"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_below="@+id/profileImageChange"-->
+<!--        android:layout_centerHorizontal="true"/>-->
 
     <EditText
         android:id="@+id/settingPassword"
@@ -93,11 +93,11 @@
         android:textSize="16sp"
         android:inputType="textPassword"
         android:hint="Change Password"
+        android:layout_below="@+id/profileImageChange"
         android:layout_marginTop="5dp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:layout_marginRight="10dp"
-        android:layout_below="@+id/settingUserName"
         android:layout_centerHorizontal="true"/>
 
     <EditText

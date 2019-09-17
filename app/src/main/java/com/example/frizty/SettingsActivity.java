@@ -36,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SettingsActivity extends AppCompatActivity {
 
     private CircleImageView profileImageView;
-    private EditText changeUserName, changePassword, changeFirstName, changeLastName, changePhoneNumber, changeEmail;
+    private EditText  changePassword, changeFirstName, changeLastName, changePhoneNumber, changeEmail;
     private TextView profileChangeTextButton, closeTextButton, saveTextButton;
 
     private Uri imageUri;
@@ -53,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         storageReference = FirebaseStorage.getInstance().getReference().child("Profile pictures");
         profileImageView = findViewById(R.id.settingProfileImage);
-        changeUserName = findViewById(R.id.settingUserName);
+        //changeUserName = findViewById(R.id.settingUserName);
         changePassword = findViewById(R.id.settingPassword);
         changeFirstName = findViewById(R.id.settingFirstName);
         changeLastName = findViewById(R.id.settingLastName);
@@ -64,7 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveTextButton = findViewById(R.id.updateAccount);
 
 
-        userInfoDisplay(profileImageView, changeUserName, changePassword, changeFirstName, changeLastName, changePhoneNumber, changeEmail);
+        userInfoDisplay(profileImageView, changePassword, changeFirstName, changeLastName, changePhoneNumber, changeEmail);
 
         closeTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,8 +124,8 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(this, "Phone number is required", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(changePassword.getText().toString())) {
             Toast.makeText(this, "Password is required", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(changeUserName.getText().toString())) {
-            Toast.makeText(this, "User Name is required", Toast.LENGTH_SHORT).show();
+//        } else if (TextUtils.isEmpty(changeUserName.getText().toString())) {
+//            Toast.makeText(this, "User Name is required", Toast.LENGTH_SHORT).show();
         } else if (checker.equals("clicked")){
             uploadImage();
         }
@@ -163,7 +163,7 @@ public class SettingsActivity extends AppCompatActivity {
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
                         HashMap<String, Object> userMap = new HashMap<>();
-                        userMap.put("username", changeUserName.getText().toString());
+                        //userMap.put("username", changeUserName.getText().toString());
                         userMap.put("password", changePassword.getText().toString());
                         userMap.put("firstname", changeFirstName.getText().toString());
                         userMap.put("lastname", changeLastName.getText().toString());
@@ -194,7 +194,7 @@ public class SettingsActivity extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
         HashMap<String, Object> userMap = new HashMap<>();
-        userMap.put("username", changeUserName.getText().toString());
+        //userMap.put("username", changeUserName.getText().toString());
         userMap.put("password", changePassword.getText().toString());
         userMap.put("firstname", changeFirstName.getText().toString());
         userMap.put("lastname", changeLastName.getText().toString());
@@ -207,7 +207,7 @@ public class SettingsActivity extends AppCompatActivity {
         finish();
     }
 
-    private void userInfoDisplay(final CircleImageView profileImageView, final EditText changeUserName, final EditText changePassword, final EditText changeFirstName, final EditText changeLastName, final EditText changePhoneNumebr, final EditText changeEmail) {
+    private void userInfoDisplay(final CircleImageView profileImageView, final EditText changePassword, final EditText changeFirstName, final EditText changeLastName, final EditText changePhoneNumebr, final EditText changeEmail) {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineUser.getUsername());
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -215,7 +215,7 @@ public class SettingsActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     if(dataSnapshot.child("image").exists()){
                         String image = dataSnapshot.child("image").getValue().toString();
-                        String userName = dataSnapshot.child("username").getValue().toString();
+                        //String userName = dataSnapshot.child("username").getValue().toString();
                         String password = dataSnapshot.child("password").getValue().toString();
                         String firstName = dataSnapshot.child("firstname").getValue().toString();
                         String lastName = dataSnapshot.child("lastname").getValue().toString();
@@ -226,7 +226,7 @@ public class SettingsActivity extends AppCompatActivity {
                         Picasso.get().load(image).into(profileImageView);
                         changeFirstName.setText(firstName);
                         changeLastName.setText(lastName);
-                        changeUserName.setText(userName);
+                        //changeUserName.setText(userName);
                         changePassword.setText(password);
                         changePhoneNumebr.setText(phone);
                         changeEmail.setText(email);
