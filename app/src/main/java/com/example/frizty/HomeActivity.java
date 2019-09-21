@@ -192,6 +192,10 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_catagory) {
 
+        } else if (id == R.id.feedback) {
+            Intent intent = new Intent(HomeActivity.this, feedback.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_settings) {
             Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
             startActivity(intent);
