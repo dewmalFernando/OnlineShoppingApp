@@ -11,7 +11,7 @@
         android:id="@+id/relativeRayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:layout_alignParentTop="true">
 
         <TextView
@@ -24,6 +24,7 @@
             android:textColor="@android:color/white"
             android:layout_marginTop="10dp"/>
     </RelativeLayout>
+
 
     <TextView
         android:id="@+id/messageOne"
@@ -50,9 +51,10 @@
 
     <Button
         android:id="@+id/orderNextButton"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/buttons"

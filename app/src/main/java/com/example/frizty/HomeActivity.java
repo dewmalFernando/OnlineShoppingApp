@@ -39,6 +39,9 @@ public class HomeActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 
+    private String type = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,11 @@ public class HomeActivity extends AppCompatActivity
 
         productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle != null){
+            type = getIntent().getExtras().get("Admin").toString();
+        }
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,13 +86,16 @@ public class HomeActivity extends AppCompatActivity
         //ImageView profileImageView = headerView.findViewById(R.id.userProfileImage);
         CircleImageView profileImageView = headerView.findViewById(R.id.userProfileImage);
 
-        userNameTextView.setText(Prevalent.currentOnlineUser.getFirstname() + Prevalent.currentOnlineUser.getLastname());
-        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+       if(!type.equals("Admin")){
+           userNameTextView.setText(Prevalent.currentOnlineUser.getFirstname() + Prevalent.currentOnlineUser.getLastname());
+           Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+       }
 
         recyclerView = findViewById(R.id.recycleMenu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
     }
 
     @Override
@@ -103,12 +114,20 @@ public class HomeActivity extends AppCompatActivity
                 holder.textProductPrice.setText("Price = "+ "Rs." + model.getPrice() );
                 Picasso.get().load(model.getImage()).into(holder.imageView);
 
+
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(HomeActivity.this, CartActivity.class);
-                        intent.putExtra("pid", model.getPid());
-                        startActivity(intent);
+                        if(type.equals("Admin")){
+                            Intent intent = new Intent(HomeActivity.this, AdminMaintainProductsActivity.class);
+                            intent.putExtra("pid", model.getPid());
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+                            intent.putExtra("pid", model.getPid());
+                            startActivity(intent);
+                        }
                     }
                 });
             }

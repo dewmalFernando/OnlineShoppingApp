@@ -10,14 +10,31 @@
         android:id="@+id/login_appLogo"
         android:layout_width="300dp"
         android:layout_height="100dp"
+        android:layout_marginTop="120dp"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_margin="15dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/login_appLogo"/>
+
+    <TextView
+        android:id="@+id/orText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:text="- OR -"
+        android:textStyle="bold"
+        android:layout_below="@+id/sign_in_button"/>
 
     <EditText
         android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_appLogo"
+        android:layout_below="@id/orText"
         android:padding="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

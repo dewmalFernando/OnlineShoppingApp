@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.frizty.Model.Users;
 import com.example.frizty.Prevalent.Prevalent;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +33,11 @@ public class LoginActivity extends AppCompatActivity {
     private TextView adminLink, notAdminLink, forgetPasswordLink;
     private CheckBox checkBoxRememberMe;
 
+
+
     private String parentDBName = "Users";
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +83,9 @@ public class LoginActivity extends AppCompatActivity {
                 parentDBName = "Users";
             }
         });
+
+
     }
-
-
-
     private void loginUser(){
 
         final DatabaseReference databaseReference;

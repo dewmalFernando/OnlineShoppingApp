@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AdminCategoryActivity extends AppCompatActivity {
 
     private ImageView maleDress, femaleDress;
-    private Button adminLogoutButton, chechkOredersButton;
+    private Button adminLogoutButton, chechkOredersButton, maintainProductButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +24,17 @@ public class AdminCategoryActivity extends AppCompatActivity {
 
         adminLogoutButton = (Button)findViewById(R.id.adminLogOutButton);
         chechkOredersButton = (Button)findViewById(R.id.checkOrdersButton);
+        maintainProductButton = (Button)findViewById(R.id.maintainButton);
 
 
+        maintainProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this, HomeActivity.class);
+                intent.putExtra("Admin", "Admin");
+                startActivity(intent);
+            }
+        });
 
         adminLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

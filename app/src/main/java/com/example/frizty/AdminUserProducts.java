@@ -34,10 +34,10 @@ public class AdminUserProducts extends AppCompatActivity {
         setContentView(R.layout.activity_admin_user_products);
 
         userId = getIntent().getStringExtra("uid");
-        productList = findViewById(R.id.productList);
-        productList.setHasFixedSize(true);
+        productList = (RecyclerView) findViewById(R.id.productList);
+        //productList.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        productList.setLayoutManager(layoutManager);
+        //productList.setLayoutManager(layoutManager);
 
         cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View").child(userId).child("Products");
     }
@@ -68,7 +68,7 @@ public class AdminUserProducts extends AppCompatActivity {
             }
         };
 
-        productList.setAdapter(adapter);
-        adapter.startListening();
+//          productList.setAdapter(adapter);
+//          adapter.startListening();
     }
 }

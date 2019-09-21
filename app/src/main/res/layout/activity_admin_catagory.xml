@@ -31,26 +31,40 @@
 
         <ImageView
             android:id="@+id/femaleDress"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_width="160dp"
+            android:layout_height="200dp"
             android:src="@drawable/female_dresses"/>
 
         <ImageView
             android:id="@+id/maleDress"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
             android:src="@drawable/tshirts"/>
 
 
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/maintainButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/adminLogOutButton"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Maintain Products"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/input_design"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
 
     <Button
         android:id="@+id/checkOrdersButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/adminLogOutButton"
+        android:layout_above="@+id/maintainButton"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="Check New Orders"

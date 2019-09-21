@@ -93,7 +93,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:text="Confirm"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/buttons"
         android:textColor="@android:color/white"/>
 
 </RelativeLayout>

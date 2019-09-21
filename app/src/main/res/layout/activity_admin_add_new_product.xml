@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/selectProductImage"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
+        android:layout_width="360dp"
+        android:layout_height="260dp"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
         android:src="@drawable/select_product_image"

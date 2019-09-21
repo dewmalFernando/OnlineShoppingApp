@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".AdminMaintainProductsActivity"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:cardElevation="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="2dp"/>
+
+        <EditText
+            android:id="@+id/productName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Name"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/productImage"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp"
+            android:textAlignment="center"/>
+        <EditText
+            android:id="@+id/productPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Price"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/productName"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp"
+            android:textAlignment="center"/>
+
+        <EditText
+            android:id="@+id/productDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Description"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/productPrice"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp"
+            android:textAlignment="center"/>
+
+
+        <Button
+            android:id="@+id/applyChangeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/productDescription"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/input_design"
+            android:text="Apply Changes"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
