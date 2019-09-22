@@ -59,6 +59,9 @@ public class feedback extends AppCompatActivity {
     private TextView closeTextButton,listFeedbackButton;
     private String userID;
     private Users User;
+    private String pname,pemail,pcomment,pid;
+    private  ProgressDialog pd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,32 @@ public class feedback extends AppCompatActivity {
         closeTextButton = findViewById(R.id.closeSettings);
         submitbtn = findViewById(R.id.sumitbtn);
         listFeedbackButton = findViewById(R.id.listFeedback);
+
+        pd = new ProgressDialog(this);
+
+
+
+      final Bundle bundle = getIntent().getExtras();
+      if (bundle != null ){
+
+          submitbtn.setText("Update");
+          pid=bundle.getString("pId");
+          pname = bundle.getString("pname");
+          pemail = bundle.getString("pemail");
+          pcomment = bundle.getString("pcomment");
+
+          nameText.setText(pname);
+          emailText.setText(pemail);
+          commentText.setText(pcomment);
+
+      }
+        else{
+
+            submitbtn.setText("Save");
+        }
+
+
+
 
 
 //        FirebaseUser mFirebaseUser = firebaseAuth.getCurrentUser();
@@ -107,7 +136,24 @@ public class feedback extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                validateData();
+
+                Bundle bundle1  = getIntent().getExtras();
+
+                if (bundle != null)
+                {
+                     //update
+                    String id =pid;
+                    String username = nameText.getText().toString().trim();
+                    String email = emailText.getText().toString().trim();
+                    String comment = commentText.getText().toString().trim();
+                    updateData(id,username,email,comment);
+                }
+                else {
+                     //input Data
+                    validateData();
+
+                }
+
 
 
             }
@@ -131,6 +177,33 @@ public class feedback extends AppCompatActivity {
                 Intent intent = new Intent(feedback.this, feedbackList.class);
                 startActivity(intent);
                 finish();
+
+            }
+        });
+
+    }
+
+    private void updateData(String id,String username, String email, String comment) {
+
+
+       pd.setTitle("Updating Data . . ");
+       pd.show();
+
+        firebaseFirestore.collection("Feedback") .document(id)
+                .update("Name",username,"Email",email,"Comment",comment)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        pd.dismiss();
+                        Toast.makeText(feedback.this, "Updated . . .", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Toast.makeText(feedback.this,e.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -209,6 +282,9 @@ public class feedback extends AppCompatActivity {
 
     private void uploadData(String username, String email, String comment) {
 
+        pd.setTitle("Adding Data . . .");
+        pd.show();
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Feedback");
 
         String id = UUID.randomUUID().toString();
@@ -216,7 +292,7 @@ public class feedback extends AppCompatActivity {
 
         Map<String, Object> FeedbackMap = new HashMap<>();
 
-        FeedbackMap.put("FID", id);
+        FeedbackMap.put("FID", id); // id of data
         FeedbackMap.put("Name", username);
         FeedbackMap.put("Email", email);
         FeedbackMap.put("Comment", comment);
@@ -228,6 +304,8 @@ public class feedback extends AppCompatActivity {
 
 
                 if (task.isSuccessful()) {
+
+                    pd.dismiss();
 
                     Toast.makeText(feedback.this, " Feedback Submitted ...", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(feedback.this, HomeActivity.class);

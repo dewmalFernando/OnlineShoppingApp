@@ -2,17 +2,25 @@ package com.example.frizty.Model;
 
 public class model {
 
-    String name,email,comment;
+    String name,email,comment,id;
 
-    public model(String fid, String name, String email, String comment){
-
+    public model(){
 
     }
 
-    public model(String name, String email, String comment) {
+    public model(String id,String name, String email, String comment) {
         this.name = name;
         this.email = email;
         this.comment = comment;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -27,7 +35,7 @@ public class model {
         return comment;
     }
 
-    public void setName(String id) {
+    public void setName(String name) {
         this.name = name;
     }
 

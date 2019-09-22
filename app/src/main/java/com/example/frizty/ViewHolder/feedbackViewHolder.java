@@ -41,6 +41,7 @@ public class feedbackViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
+
         rname = itemView.findViewById(R.id.rname);
         remail =itemView.findViewById(R.id.remail);
         rcomment =itemView.findViewById(R.id.rcomment);

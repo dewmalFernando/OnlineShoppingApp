@@ -44,9 +44,9 @@ public class feedbackList extends AppCompatActivity {
         setContentView(R.layout.activity_feedback_list);
 
         db=FirebaseFirestore.getInstance();
-
+        addFeedBtn = findViewById(R.id.addFeed);
       mrecyclerView = findViewById(R.id.productsList);
-      addFeedBtn = findViewById(R.id.addFeed);
+
 
       mrecyclerView.setHasFixedSize(true);
       layoutManager = new LinearLayoutManager(this);
@@ -81,12 +81,15 @@ public class feedbackList extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
+                            modelList.clear();
                             pd.dismiss();
 
                             for (DocumentSnapshot  doc :task.getResult()){
                                 model  mdl = new model
-                                        ( doc.getString("Name"),
-                                          doc.getString("Email"), doc.getString("Comment")
+                                        ( doc.getString("FID"),
+                                                doc.getString("Name"),
+                                                doc.getString("Email"),
+                                                doc.getString("Comment")
                                  );
 
                                 modelList.add(mdl);
@@ -106,7 +109,44 @@ public class feedbackList extends AppCompatActivity {
                             pd.dismiss();
                             Toast.makeText(feedbackList.this,"Error.." +e.getMessage(),Toast.LENGTH_SHORT).show();
 
+
+
+
                         }
                     });
+
+
     }
+
+
+    public void deleteData(int index)
+   {
+
+       pd.setTitle("Deleting Data. . . ");
+       pd.show();
+
+       db.collection("Feedback").document(modelList.get(index).getId())
+               .delete()
+               .addOnCompleteListener(new OnCompleteListener<Void>() {
+                   @Override
+                   public void onComplete(@NonNull Task<Void> task) {
+
+                       Toast.makeText(feedbackList.this,"Deleted.." ,Toast.LENGTH_SHORT).show();
+                       showData();
+
+                   }
+               }).addOnFailureListener(new OnFailureListener() {
+           @Override
+           public void onFailure(@NonNull Exception e) {
+               pd.dismiss();
+
+               Toast.makeText(feedbackList.this,"Error.." +e.getMessage(),Toast.LENGTH_SHORT).show();
+           }
+       });
+   }
+
+
+
+
+
 }
