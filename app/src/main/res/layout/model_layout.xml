@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardElevation="15dp">
+    android:cardBackgroundColour = "#fff"
+    android:contentPadding = "5dp"
+    app:cardConerRadius = "3dp"
+    app:cardUseCompatPadding = "true">
+
+
+ <RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="10dp"
+android:background="@color/colorPrimary">
+
+<TextView
+    android:id="@+id/rname"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:text="USerName"
+    android:textColor="@android:color/white"
+    android:layout_marginLeft="14dp"
+    android:layout_alignParentLeft="true"/>
+
+<TextView
+    android:id="@+id/remail"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:text="Email Address  "
+    android:textColor="@android:color/white"
+    android:layout_marginLeft="14dp"
+    android:layout_below="@+id/rname"
+    android:layout_marginTop="10dp"
+     android:layout_marginRight="5dp"
+    android:textStyle="bold"/>
+
+<TextView
+    android:id="@+id/rcomment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Opinion"
+    android:textColor="@android:color/white"
+    android:layout_marginLeft="14dp"
+    android:textStyle="bold"
+    android:layout_below="@+id/remail"
+    android:layout_marginTop="10dp"/>
+
+</RelativeLayout>
+
+    </androidx.cardview.widget.CardView>

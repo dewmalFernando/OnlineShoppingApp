@@ -56,7 +56,7 @@ public class feedback extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private StorageReference storageReference;
-    private TextView closeTextButton;
+    private TextView closeTextButton,listFeedbackButton;
     private String userID;
     private Users User;
 
@@ -74,6 +74,7 @@ public class feedback extends AppCompatActivity {
         commentText = findViewById(R.id.commenttxt);
         closeTextButton = findViewById(R.id.closeSettings);
         submitbtn = findViewById(R.id.sumitbtn);
+        listFeedbackButton = findViewById(R.id.listFeedback);
 
 
 //        FirebaseUser mFirebaseUser = firebaseAuth.getCurrentUser();
@@ -112,10 +113,25 @@ public class feedback extends AppCompatActivity {
             }
         });
 
+
+
+
         closeTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+
+        listFeedbackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(feedback.this, feedbackList.class);
+                startActivity(intent);
+                finish();
+
             }
         });
 
