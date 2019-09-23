@@ -83,91 +83,6 @@ public class ViewCartActivity extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        checkOrderStatus();
-        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
-
-        FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>()
-                .setQuery(cartListRef.child("User View")
-                        .child(Prevalent.currentOnlineUser.getUsername()).child("Products"), Cart.class)//Something is wrong in this line
-                .build();
-
-        FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model) {
-                holder.textProductQuantity.setText("Quantity = " + model.getQuantity());
-                holder.textProductPrice.setText("Price "+ "Rs." + model.getPrice() );
-                holder.textProductName.setText(model.getPname());
-
-                int oneTypeProductTotPrice = (((Integer.valueOf(model.getPrice()))) * Integer.valueOf((model.getQuantity())));
-                totalPrice = totalPrice + oneTypeProductTotPrice;
-//                try{
-//                    int oneTypeProductTotPrice = (Integer.valueOf(model.getPrice()))*Integer.valueOf(model.getQuantity());
-//                    totalPrice += oneTypeProductTotPrice;
-//
-//                } catch (Exception e){
-//                    e.printStackTrace();
-//                }
-
-
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        CharSequence options[] = new CharSequence[]{
-                            "Edit",
-                            "Remove"
-                        };
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewCartActivity.this);
-                        builder.setTitle("Cart Options:");
-
-                        builder.setItems(options, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if(which == 0){
-                                    Intent intent = new Intent(ViewCartActivity.this, CartActivity.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-                                } if(which == 1){
-                                    cartListRef.child("User View")
-                                            .child(Prevalent.currentOnlineUser.getUsername())
-                                            .child(model.getPid())
-                                            .removeValue()
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()){
-                                                        Toast.makeText(ViewCartActivity.this, "Item removed successfully", Toast.LENGTH_SHORT).show();
-                                                        Intent intent = new Intent(ViewCartActivity.this, HomeActivity.class);
-                                                        startActivity(intent);
-                                                    }
-                                                }
-                                            });
-                                }
-                            }
-                        });
-                        builder.show();
-                    }
-                });
-            }
-
-            @NonNull
-            @Override
-            public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_items_layout, parent, false);
-                CartViewHolder holder = new CartViewHolder(view);
-                return holder;
-            }
-        };
-
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
-    }
-
-
     private void checkOrderStatus(){
         DatabaseReference orderRef;
         orderRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.currentOnlineUser.getUsername());
@@ -211,6 +126,88 @@ public class ViewCartActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkOrderStatus();
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
+        FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>()
+                .setQuery(cartListRef.child("User View")
+                        .child(Prevalent.currentOnlineUser.getUsername()).child("Products"), Cart.class)
+                .build();
+
+        FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model) {
+                holder.textProductQuantity.setText("Quantity = " + model.getQuantity());
+                holder.textProductPrice.setText("Price "+ "Rs." + model.getPrice() );
+                holder.textProductName.setText(model.getPname());
+
+                int oneTypeProductTotPrice = (((Integer.valueOf(model.getPrice()))) * Integer.valueOf((model.getQuantity())));
+                totalPrice = totalPrice + oneTypeProductTotPrice;
+//                try{
+//                    int oneTypeProductTotPrice = (Integer.valueOf(model.getPrice()))*Integer.valueOf(model.getQuantity());
+//                    totalPrice += oneTypeProductTotPrice;
+//
+//                } catch (Exception e){
+//                    e.printStackTrace();
+//                }
+
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Edit",
+                                "Remove"
+                        };
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewCartActivity.this);
+                        builder.setTitle("Cart Options:");
+
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(which == 0){
+                                    Intent intent = new Intent(ViewCartActivity.this, CartActivity.class);
+                                    intent.putExtra("pid", model.getPid());
+                                    startActivity(intent);
+                                } if(which == 1){
+                                    cartListRef.child("User View")
+                                            .child(Prevalent.currentOnlineUser.getUsername())
+                                            .child("Products")
+                                            .child(model.getPid())
+                                            .removeValue()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()) {
+                                                        Toast.makeText(ViewCartActivity.this, "Item removed successfully", Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(ViewCartActivity.this, HomeActivity.class);
+                                                        startActivity(intent);
+                                                    }
+                                                }
+                                            });
+                                }
+                            }
+                        });
+                        builder.show();
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_items_layout, parent, false);
+                CartViewHolder holder = new CartViewHolder(view);
+                return holder;
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+    }
 
 }
