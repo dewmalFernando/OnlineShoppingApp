@@ -33,7 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     private TextView adminLink, notAdminLink, forgetPasswordLink;
     private CheckBox checkBoxRememberMe;
 
-
+//    private SignInButton googleSignInButton;
+//    private GoogleApiClient googleApiClient;
+//    private static final int REQ_CODE = 1212;
 
     private String parentDBName = "Users";
 
@@ -56,11 +58,25 @@ public class LoginActivity extends AppCompatActivity {
         Paper.init(this);
 
 
+//        googleSignInButton = findViewById(R.id.sign_in_button);
+
+
+
+
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginUser();
+            }
+        });
+
+        forgetPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RestPasswordActivity.class);
+                intent.putExtra("check", "login");
+                startActivity(intent);
             }
         });
 

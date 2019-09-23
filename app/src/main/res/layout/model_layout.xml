@@ -6,10 +6,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardElevation="15dp">
-    android:cardBackgroundColour = "#fff"
-    android:contentPadding = "5dp"
-    app:cardConerRadius = "3dp"
-    app:cardUseCompatPadding = "true">
+<!--    android:cardBackgroundColour = "#fff"-->
+<!--    android:contentPadding = "5dp"-->
+<!--    app:cardConerRadius = "3dp"-->
+<!--    app:cardUseCompatPadding = "true">-->
 
 
  <RelativeLayout

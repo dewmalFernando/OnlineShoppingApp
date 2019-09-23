@@ -59,15 +59,28 @@ public class ViewCartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                check();
+//                Intent intent = new Intent(ViewCartActivity.this, ComfirmFinalOrderActivity.class);
+//            intent.putExtra("Total Price", String.valueOf(totalPrice));
+//            finish();
+//            startActivity(intent);
 
-
-                Intent intent = new Intent(ViewCartActivity.this, ComfirmFinalOrderActivity.class);
-                intent.putExtra("Total Price", String.valueOf(totalPrice));
-                finish();
-                startActivity(intent);
             }
         });
         totalPriceTxt.setText("Total price = Rs." + String.valueOf(totalPrice));
+    }
+
+    private void check() {
+        if(totalPrice == 0){
+            nextButton.setVisibility(View.GONE);
+            Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
+        } else {
+            nextButton.setVisibility(View.VISIBLE);
+            Intent intent = new Intent(ViewCartActivity.this, ComfirmFinalOrderActivity.class);
+            intent.putExtra("Total Price", String.valueOf(totalPrice));
+            finish();
+            startActivity(intent);
+        }
     }
 
 
@@ -89,15 +102,15 @@ public class ViewCartActivity extends AppCompatActivity {
                 holder.textProductPrice.setText("Price "+ "Rs." + model.getPrice() );
                 holder.textProductName.setText(model.getPname());
 
-//                int oneTypeProductTotPrice = (((Integer.valueOf(model.getPrice()))) * Integer.valueOf((model.getQuantity())));
-//                totalPrice = totalPrice + oneTypeProductTotPrice;
-                try{
-                    int oneTypeProductTotPrice = (Integer.valueOf(model.getPrice()))*Integer.valueOf(model.getQuantity());
-                    totalPrice += oneTypeProductTotPrice;
-
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
+                int oneTypeProductTotPrice = (((Integer.valueOf(model.getPrice()))) * Integer.valueOf((model.getQuantity())));
+                totalPrice = totalPrice + oneTypeProductTotPrice;
+//                try{
+//                    int oneTypeProductTotPrice = (Integer.valueOf(model.getPrice()))*Integer.valueOf(model.getQuantity());
+//                    totalPrice += oneTypeProductTotPrice;
+//
+//                } catch (Exception e){
+//                    e.printStackTrace();
+//                }
 
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +149,6 @@ public class ViewCartActivity extends AppCompatActivity {
                                 }
                             }
                         });
-
                         builder.show();
                     }
                 });

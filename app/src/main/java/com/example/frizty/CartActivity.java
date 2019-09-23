@@ -3,8 +3,10 @@ package com.example.frizty;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ public class CartActivity extends AppCompatActivity {
     private TextView producrPrice, productDescription, productName;
     private String productId = "", state = "Normal";
     private Button addToCartButton;
+    private Spinner selectSizeSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +45,22 @@ public class CartActivity extends AppCompatActivity {
 
         productId = getIntent().getStringExtra("pid");
 
-
         addToCartButton = (Button)findViewById(R.id.pdAddToCartButton);
         numberButton = (ElegantNumberButton)findViewById(R.id.numberButton);
         productImage = (ImageView)findViewById(R.id.productImageDetails);
         producrPrice = (TextView)findViewById(R.id.productPriceDetails);
         productDescription = (TextView)findViewById(R.id.productDescriptionDetails);
         productName = (TextView)findViewById(R.id.productNameDetails);
-
+        selectSizeSpinner = findViewById(R.id.sizesSpinner);
 
         getProductDetails(productId);
+
+        selectSizeSpinner = (Spinner) findViewById(R.id.sizesSpinner);
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CartActivity.this,
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.size));
+
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selectSizeSpinner.setAdapter(myAdapter);
 
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +85,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void addingToCartList() {
         String saveCurrentTime, saveCurrentDate;
+        String selectedSize = selectSizeSpinner.getSelectedItem().toString();
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
@@ -96,6 +106,7 @@ public class CartActivity extends AppCompatActivity {
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
         cartMap.put("discount", "");
+        cartMap.put("size", selectedSize);
 
         cartListRef.child("User View").child(Prevalent.currentOnlineUser.getUsername())
                 .child("Products").child(productId)

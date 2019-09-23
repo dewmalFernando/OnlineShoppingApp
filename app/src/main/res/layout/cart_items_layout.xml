@@ -30,7 +30,6 @@
                     android:textColor="@android:color/white"
                     android:layout_marginLeft="14dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginRight="5dp"
                     android:textStyle="bold"/>
 
             <TextView

@@ -1,19 +1,17 @@
 package com.example.frizty;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.frizty.PaypalConfig.PaypalClientCode;
 import com.example.frizty.Prevalent.Prevalent;
@@ -74,12 +72,34 @@ public class ComfirmFinalOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 check();
-
             }
         });
     }
 
     private void check() {
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineUser.getUsername());
+//        ref.child("Users").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                    String shipUserName = dataSnapshot.child("firstname").getValue().toString();
+//                    String shipPhone = dataSnapshot.child("phone").getValue().toString();
+//                    String shipAddress = dataSnapshot.child("address").getValue().toString();
+//                    String shipCity = dataSnapshot.child("city").getValue().toString();
+//
+//                    nameEditText.setText(shipUserName);
+//                    phoneEditText.setText(shipPhone);
+//                    addressEditText.setText(shipAddress);
+//                    cityEditText.setText(shipCity);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+
         if(TextUtils.isEmpty(nameEditText.getText().toString())){
             Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show();
         } else  if(TextUtils.isEmpty(phoneEditText.getText().toString())){
@@ -94,6 +114,7 @@ public class ComfirmFinalOrderActivity extends AppCompatActivity {
             confirmOrder();
         }
     }
+
 
     private void confirmOrder() {
         final String saveCurrentDate, saveCurrentTime;
@@ -132,22 +153,32 @@ public class ComfirmFinalOrderActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
-                                    PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(totalAmount)),"Rs.", "Donate for EDMTDev", PayPalPayment.PAYMENT_INTENT_SALE);
-                                    Toast.makeText(ComfirmFinalOrderActivity.this, "Final order has been pleased successfully", Toast.LENGTH_SHORT).show();
-
-                                    Intent intent = new Intent(ComfirmFinalOrderActivity.this, PaymentActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-                                    intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
-                                    startActivityForResult(intent, PAYPAL_REQUEST_CODE);
-                                    startActivity(intent);
-                                    finish();
+                                    papPayPayment();
                                 }
                             }
                         });
             }
         });
     }
+
+    public void papPayPayment(){
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(totalAmount))
+                ,"Rs.", "Purchased from Frizty", PayPalPayment.PAYMENT_INTENT_SALE);
+
+
+        Intent intent = new Intent(ComfirmFinalOrderActivity.this, PaymentActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
+        startActivityForResult(intent, PAYPAL_REQUEST_CODE);
+        startActivity(intent);
+        //finish();
+
+        Toast.makeText(ComfirmFinalOrderActivity.this,
+                "Final order has been pleased successfully", Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

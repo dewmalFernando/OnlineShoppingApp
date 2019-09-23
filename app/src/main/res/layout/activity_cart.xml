@@ -49,6 +49,16 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"/>
 
+    <Spinner
+        android:id="@+id/sizesSpinner"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/productPriceDetails"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:dropDownWidth="100dp" />
+
 
     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
         android:id="@+id/numberButton"
@@ -58,8 +68,9 @@
         app:textSize="16sp"
         app:initialNumber="1"
         app:finalNumber="10"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/productPriceDetails">
+        android:layout_below="@+id/sizesSpinner">
     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
     <Button
@@ -70,7 +81,7 @@
         android:layout_margin="15dp"
         android:layout_alignParentBottom="true"
         android:text="Add to cart"
-        android:padding="20dp"
+        android:padding="15dp"
         android:textColor="@android:color/white"
         android:textSize="18sp"/>
 

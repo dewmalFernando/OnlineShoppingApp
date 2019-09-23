@@ -86,15 +86,16 @@ public class HomeActivity extends AppCompatActivity
         //ImageView profileImageView = headerView.findViewById(R.id.userProfileImage);
         CircleImageView profileImageView = headerView.findViewById(R.id.userProfileImage);
 
-       if(!type.equals("Admin")){
-           userNameTextView.setText(Prevalent.currentOnlineUser.getFirstname() + Prevalent.currentOnlineUser.getLastname());
-           Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
-       }
 
         recyclerView = findViewById(R.id.recycleMenu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        if(!type.equals("Admin")){
+            userNameTextView.setText(Prevalent.currentOnlineUser.getFirstname() + " "  + Prevalent.currentOnlineUser.getLastname());
+            Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+        }
 
     }
 

@@ -67,6 +67,19 @@
             android:textColor="@color/colorPrimary"
             android:textSize="16dp" />
 
+        <Button
+            android:id="@+id/deleteProductButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/applyChangeButton"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/input_design"
+            android:text="Delete Product"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp" />
+
 
     </RelativeLayout>
 
