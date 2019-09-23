@@ -1,5 +1,6 @@
 package com.example.frizty;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -178,7 +178,7 @@ public class feedbackList extends AppCompatActivity {
                                 if(which == 0){
                                     databaseReference.child("Users").child("User Feedback")
                                             .child(Prevalent.currentOnlineUser.getUsername())
-//                                            .child(model.getFeedComment())
+                                            .child(model.getFeedComment())
                                             .removeValue()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
@@ -204,28 +204,29 @@ public class feedbackList extends AppCompatActivity {
 
     public void deleteData(int index)
    {
+       onStart();
 
-//       pd.setTitle("Deleting Data. . . ");
-//       pd.show();
-//
-//       db.collection("Feedback").document(modelList.get(index).getId())
-//               .delete()
-//               .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                   @Override
-//                   public void onComplete(@NonNull Task<Void> task) {
-//
-//                       Toast.makeText(feedbackList.this,"Deleted.." ,Toast.LENGTH_SHORT).show();
-//                       showData();
-//
-//                   }
-//               }).addOnFailureListener(new OnFailureListener() {
-//           @Override
-//           public void onFailure(@NonNull Exception e) {
-//               pd.dismiss();
-//
-//               Toast.makeText(feedbackList.this,"Error.." +e.getMessage(),Toast.LENGTH_SHORT).show();
-//           }
-//       });
+       pd.setTitle("Deleting Data. . . ");
+       pd.show();
+
+       db.collection("Feedback").document(modelList.get(index).getId())
+               .delete()
+               .addOnCompleteListener(new OnCompleteListener<Void>() {
+                   @Override
+                   public void onComplete(@NonNull Task<Void> task) {
+
+                       Toast.makeText(feedbackList.this,"Deleted.." ,Toast.LENGTH_SHORT).show();
+                       showData();
+
+                   }
+               }).addOnFailureListener(new OnFailureListener() {
+           @Override
+           public void onFailure(@NonNull Exception e) {
+               pd.dismiss();
+
+               Toast.makeText(feedbackList.this,"Error.." +e.getMessage(),Toast.LENGTH_SHORT).show();
+           }
+       });
    }
 
 
