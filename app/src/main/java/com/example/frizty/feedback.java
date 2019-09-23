@@ -1,14 +1,7 @@
 package com.example.frizty;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,33 +10,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.frizty.Model.Users;
 import com.example.frizty.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.example.frizty.Model.Users;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import android.os.Bundle;
 
 public class feedback extends AppCompatActivity {
 
@@ -53,7 +36,7 @@ public class feedback extends AppCompatActivity {
     private String parentDBName = "Users";
     private ProgressDialog loadingBar;
     private FirebaseFirestore firebaseFirestore;
-    private DatabaseReference databaseReference;
+    private DatabaseReference ref;
     private FirebaseAuth firebaseAuth;
     private StorageReference storageReference;
     private TextView closeTextButton,listFeedbackButton;
@@ -153,6 +136,8 @@ public class feedback extends AppCompatActivity {
                     validateData();
 
                 }
+
+                addFeedback();
 
 
 
@@ -321,7 +306,45 @@ public class feedback extends AppCompatActivity {
 
             }
         });
-
-
     }
+
+
+    private void addFeedback(){
+        String fedName = nameText.getText().toString();
+        String fedEmail = emailText.getText().toString();
+        String fedComment = commentText.getText().toString();
+
+        if(nameText.equals("")){
+            Toast.makeText(this, "Enter your name", Toast.LENGTH_SHORT).show();
+        } else if(emailText.equals("")){
+            Toast.makeText(this, "Enter your email", Toast.LENGTH_SHORT).show();
+        }else if(commentText.equals("")) {
+            Toast.makeText(this, "Your feedback is empty", Toast.LENGTH_SHORT).show();
+        }else{
+            DatabaseReference ref = FirebaseDatabase
+                    .getInstance()
+                    .getReference()
+                    .child("Users")
+                    .child(Prevalent.currentOnlineUser.getUsername());
+
+            HashMap<String, Object> userFeedDataMap = new HashMap<>();
+            userFeedDataMap.put("Feedback", fedComment);
+
+            ref.child("User Feedback").updateChildren(userFeedDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(feedback.this, "Feedback sent successful", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(feedback.this, HomeActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            });
+        }
+    }
+
+
+
+
 }
