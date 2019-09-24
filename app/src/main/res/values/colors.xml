@@ -7,6 +7,10 @@
     <color name="colorPrimary">#333333</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D4AF37</color>
-    <color name="colorButtons">#D4AF37</color>
+    <color name="colorButtons">#FFC71C</color>
     <color name="colorLogoutButtons">#FF0000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#5F5757</color>
 </resources>

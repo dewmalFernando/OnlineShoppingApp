@@ -60,25 +60,31 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/productDescription"
             android:layout_marginTop="3dp"
-            android:background="@drawable/input_design"
+            android:background="@drawable/buttons"
             android:text="Apply Changes"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16dp" />
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/deleteProductButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/applyChangeButton"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/input_design"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/buttons"
             android:text="Delete Product"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16dp" />
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

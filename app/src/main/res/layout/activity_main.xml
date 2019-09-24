@@ -6,60 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--<ImageView-->
-        <!--android:id="@+id/app_logo"-->
-        <!--android:layout_width="300dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="60dp"-->
-        <!--android:src="@drawable/applogo"/>-->
-
-    <TextView
-        android:id="@+id/app_slogan"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="259dp"
+        android:layout_height="258dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
-        android:text="FIND, DISCOVER
-                          and
-                          BUY"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        android:textStyle="bold"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="71dp"
+        app:srcCompat="@drawable/output" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="262dp"
+        android:layout_height="227dp"
+        android:layout_above="@+id/main_join_btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="40dp"
+        app:srcCompat="@drawable/fritzt" />
 
     <Button
         android:id="@+id/main_login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="17dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="47dp"
         android:background="@drawable/buttons"
-        android:textAllCaps="false"
         android:padding="20dp"
-        android:textSize="18sp"
         android:text="Already have an account? Login"
-        android:textColor="@android:color/white"/>
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/main_join_btn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/main_login_btn"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="22dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginRight="15dp"
-        android:textAllCaps="false"
-        android:background="@drawable/input_design"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/buttons"
         android:padding="20dp"
-        android:textSize="18sp"
         android:text="Join now"
-        android:textColor="@android:color/background_dark"/>
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

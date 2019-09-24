@@ -77,12 +77,16 @@
         android:id="@+id/pdAddToCartButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttons"
-        android:layout_margin="15dp"
         android:layout_alignParentBottom="true"
-        android:text="Add to cart"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/buttons"
         android:padding="15dp"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"/>
+        android:text="Add to cart"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

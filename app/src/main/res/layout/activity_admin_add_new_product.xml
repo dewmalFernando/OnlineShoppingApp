@@ -18,7 +18,7 @@
         android:layout_marginEnd="24dp"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
-        android:src="@drawable/select_product_image" />
+        android:src="@drawable/image" />
 
     <EditText
         android:id="@+id/productName"
@@ -63,15 +63,16 @@
         android:id="@+id/addProductBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Product"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:layout_marginBottom="30dp"
-        android:textSize="18sp"
-        android:padding="17dp"
-        android:textAllCaps="false"
         android:background="@drawable/buttons"
-        android:textColor="@android:color/white"
-        android:layout_alignParentBottom="true"/>
+        android:padding="17dp"
+        android:text="Add Product"
+        android:textAllCaps="false"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

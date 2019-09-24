@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="match_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".LoginActivity">
 
         <ImageView
             android:id="@+id/login_appLogo"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="120dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="189dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="61dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="49dp"
+            android:src="@drawable/fritzt" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
@@ -92,7 +98,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="130dp"
                 android:text="Forget password?"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <Button
@@ -101,39 +108,42 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout1"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/buttons"
-            android:textAllCaps="false"
             android:padding="20dp"
-            android:textSize="18sp"
             android:text="Login"
-            android:textColor="@android:color/white"/>
+            android:textAllCaps="false"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/adminPanelLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/main_login_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
             android:text="Admin?"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/main_login_btn"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/notAdminPanelLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="15dp"
-            android:text="Not Admin"
             android:layout_below="@+id/main_login_btn"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="Not Admin"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 </ScrollView>
