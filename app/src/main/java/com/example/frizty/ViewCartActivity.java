@@ -114,7 +114,6 @@ public class ViewCartActivity extends AppCompatActivity {
 
                             Toast.makeText(ViewCartActivity.this, "You can purchase more product once you receive your first order", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 }
             }

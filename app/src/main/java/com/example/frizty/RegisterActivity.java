@@ -122,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                     loadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Please try again using different email address", Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
 

@@ -110,6 +110,9 @@ public class LoginActivity extends AppCompatActivity {
         String username = inputUserName.getText().toString();
         String password = inputPassword.getText().toString();
 
+//        String username = "dew";
+//        String password =  "123";
+
 
 
         if(TextUtils.isEmpty(username)){

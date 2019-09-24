@@ -66,27 +66,15 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
 
 //////////////////////////////////////////
     private void deleteProduct() {
-        productRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    productRef.child("Products").child("pid").removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(AdminMaintainProductsActivity.this, "Product Successfully Deleted", Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminCategoryActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
+//        databaseReference.child().removeValue();
+//
+//
+//        Toast.makeText(this, "Product Deleted Successfully", Toast.LENGTH_SHORT).show();
+//
+//        Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminCategoryActivity.class);
+//        startActivity(intent);
     }
 
     private void applyChanges() {

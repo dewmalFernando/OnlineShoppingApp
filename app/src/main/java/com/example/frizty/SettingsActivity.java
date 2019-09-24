@@ -45,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
     private StorageTask uploadTask;
     private StorageReference storageReference;
     private String checker = "";
-    private Button securityQuestionButton;
+    private Button securityQuestionButton, deleteAccountButton;
 
 
     @Override
@@ -65,6 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
         closeTextButton = findViewById(R.id.closeSettings);
         saveTextButton = findViewById(R.id.updateAccount);
         securityQuestionButton = findViewById(R.id.securityQuestionButton);
+        deleteAccountButton = findViewById(R.id.deleteAccountButton);
 
 
         userInfoDisplay(profileImageView, changePassword, changeFirstName, changeLastName, changePhoneNumber, changeEmail);
@@ -107,7 +108,17 @@ public class SettingsActivity extends AppCompatActivity {
                         .start(SettingsActivity.this);
             }
         });
+
+
+        deleteAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAccount();
+            }
+        });
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -186,7 +197,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
-                        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+                        startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
                         Toast.makeText(SettingsActivity.this, "Profile information updated successfully", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
@@ -251,5 +262,17 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void deleteAccount() {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        databaseReference.child(Prevalent.currentOnlineUser.getUsername()).removeValue();
+
+
+        Toast.makeText(this, "Account Deleted Successfully", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
